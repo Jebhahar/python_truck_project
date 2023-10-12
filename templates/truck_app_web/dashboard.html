@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <style>
+        /* =========== Google Fonts ============ */
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap");
+
+/* =============== Globals ============== */
+* {
+  font-family: "Ubuntu", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --yellow: #f7b006;
+  --white: #fff;
+  --gray: #f5f5f5;
+  --black1: #222;
+  --black2: #999;
+  --blue:#00529B;
+}
+
+body {
+
+  overflow-x: hidden;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+}
+
+/* =============== Navigation ================ */
+.navigation {
+  position: fixed;
+  width: 240px;
+  height: 100%;
+  background: #00529B;
+  border-left: 0px solid #1E90FF;
+  transition: 0.5s;
+  overflow: hidden;
+}
+.navigation.active {
+  width: 70px;
+}
+
+.navigation ul {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.navigation ul li {
+  position: relative;
+  width: 100%;
+  list-style: none;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+}
+
+.navigation ul li:hover,
+.navigation ul li.hovered {
+  background-color: #ffff;
+}
+
+.navigation ul li:nth-child(1) {
+  margin-bottom: 40px;
+  pointer-events: none;
+}
+
+.navigation ul li a {
+  position: relative;
+  display: block;
+  width: 100%;
+  display: flex;
+  text-decoration: none;
+  color: var(--white);
+}
+.navigation ul li:hover a,
+.navigation ul li.hovered a {
+  color: var(--blue
+  );
+}
+
+.navigation ul li a .icon {
+  position: relative;
+  display: block;
+  min-width: 60px;
+  height: 60px;
+  line-height: 75px;
+  text-align: center;
+}
+.navigation ul li a .icon ion-icon {
+  font-size: 1.75rem;
+}
+
+.navigation ul li a .title {
+  position: relative;
+  display: block;
+  padding: 0 10px;
+  height: 60px;
+  line-height: 60px;
+  text-align: start;
+  white-space: nowrap;
+}
+
+/* --------- curve outside ---------- */
+.navigation ul li:hover a::before,
+.navigation ul li.hovered a::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: -50px;
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  border-radius: 50%;
+  box-shadow: 35px 35px 0 10px var(--white);
+  pointer-events: none;
+}
+.navigation ul li:hover a::after,
+.navigation ul li.hovered a::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -50px;
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  border-radius: 50%;
+  box-shadow: 35px -35px 0 10px var(--white);
+  pointer-events: none;
+}
+
+/* ===================== Main ===================== */
+.main {
+  position: absolute;
+  width: calc(100% - 240px);
+  left: 240px;
+  min-height: 100vh;
+  background: #FFF;
+  transition: 0.5s;
+  overflow-y: auto;
+}
+.main.active {
+  width: calc(100% - 70px);
+  left: 73px;
+}
+
+.topbar {
+  background-color: #00529B;
+  width: 100%;
+  height: 63px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+}
+
+
+/* ======================= Cards ====================== */
+.cardBox {
+  position: relative;
+  right: 30px;
+  width: 80%;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 30px;
+}
+
+.cardBox {
+  position: relative;
+  background: #f4f0ec;
+  padding: 10px;
+  border-radius: 20px;
+  display: flex;
+  cursor: pointer;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+}
+
+.cardBox {
+  position: relative;
+  font-weight: 500;
+  font-size: 3rem;
+  color: black;
+}
+
+.cardBox {
+  color: var(--black2);
+  font-size: 1rem;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-weight: bold;
+  padding-top: 15px;
+}
+
+/* ================== V-card ============== */
+
+.h-card {
+    height: 140px;
+    width: 320px;
+}
+
+.h-card .h-cardName {
+  color: #FFF;
+  font-size: 1rem;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-weight: bold;
+  padding-top: 15px;
+}
+
+.h-card .h-card-numbers {
+  position: relative;
+  padding-right: 0px;
+  padding-left: 85px;
+  padding-top: 0px;
+  color: #FFF;
+  font-weight: 500;
+  font-size: 3rem;
+}
+.h-card {
+  position: relative;
+  background: var(--white);
+  padding: 10px;
+  border-radius: 20px;
+  display: flex;
+  cursor: pointer;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+}
+.h-card-left {
+    background-color: #FFF;
+    border-radius: 20px;
+    width: 120px;
+    height: 130px;
+    padding-left: 8px;
+
+}
+.h-iconBx {
+    color: #4bbbeb;
+    padding-top: 25px;
+}
+.h-cardres{
+    border-radius: 25px;
+    width: 250px;
+    height: 120px;
+    background-color: #4bbbeb;
+}
+/* ================== V-card ============== */
+.v-card {
+    height: 140px;
+    width: 320px;
+}
+
+.v-card .v-cardName {
+  color: #FFF;
+  font-size: 1rem;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-weight: bold;
+  padding-top: 15px;
+}
+
+.v-card .v-card-numbers {
+  position: relative;
+  padding-right: 0px;
+  padding-left: 85px;
+  padding-top: 0px;
+  color: #FFF;
+  font-weight: 500;
+  font-size: 3rem;
+}
+.v-card {
+  position: relative;
+  background: var(--white);
+  padding: 10px;
+  border-radius: 20px;
+  display: flex;
+  cursor: pointer;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+}
+.v-card-left {
+    background-color: #FFF;
+    border-radius: 20px;
+    width: 120px;
+    height: 130px;
+    padding-left: 8px;
+
+}
+.v-iconBx {
+    color: #4bbbeb;
+    padding-top: 25px;
+}
+.v-cardres{
+    border-radius: 25px;
+    width: 250px;
+    height: 120px;
+    background-color: #4bbbeb;
+}
+
+/* ================== w-card ============== */
+
+.w-card {
+    height: 140px;
+    width: 320px;
+}
+
+.w-card .w-cardName {
+  color: #FFF;
+  font-size: 1rem;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-weight: bold;
+  padding-top: 15px;
+}
+
+.w-card .w-card-numbers {
+  position: relative;
+  padding-right: 0px;
+  padding-left: 85px;
+  padding-top: 0px;
+  color: #FFF;
+  font-weight: 500;
+  font-size: 3rem;
+}
+.w-card {
+  position: relative;
+  background: var(--white);
+  padding: 10px;
+  border-radius: 20px;
+  display: flex;
+  cursor: pointer;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+}
+.w-card-left {
+    background-color: #FFF;
+    border-radius: 20px;
+    width: 120px;
+    height: 130px;
+    padding-left: 8px;
+
+}
+.w-iconBx {
+    color: #4bbbeb;
+    padding-top: 25px;
+}
+.w-cardres{
+    border-radius: 25px;
+    width: 250px;
+    height: 120px;
+    background-color: #4bbbeb;
+}
+
+/* ================== cu-card ============== */
+
+.cu-card {
+    height: 140px;
+    width: 320px;
+}
+
+.cu-card .cu-cardName {
+  color: #FFF;
+  font-size: 1rem;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-weight: bold;
+  padding-top: 15px;
+}
+
+.cu-card .cu-card-numbers {
+  position: relative;
+  padding-right: 0px;
+  padding-left: 85px;
+  padding-top: 0px;
+  color: #FFF;
+  font-weight: 500;
+  font-size: 3rem;
+}
+.cu-card {
+  position: relative;
+  background: var(--white);
+  padding: 10px;
+  border-radius: 20px;
+  display: flex;
+  cursor: pointer;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+}
+.cu-card-left {
+    background-color: #FFF;
+    border-radius: 20px;
+    width: 120px;
+    height: 130px;
+    padding-left: 8px;
+
+}
+.cu-iconBx {
+    color: #f29638;
+    padding-top: 25px;
+}
+.cu-cardres{
+    border-radius: 25px;
+    width: 250px;
+    height: 120px;
+    background-color: #f29638;
+}
+/* ================== co-card ============== */
+.co-card {
+    height: 140px;
+    width: 320px;
+}
+
+.co-card .co-cardName {
+  color: #FFF;
+  font-size: 1rem;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-weight: bold;
+  padding-top: 15px;
+}
+
+.co-card .co-card-numbers {
+  position: relative;
+  padding-right: 0px;
+  padding-left: 85px;
+  padding-top: 0px;
+  color: #FFF;
+  font-weight: 500;
+  font-size: 3rem;
+}
+.co-card {
+  position: relative;
+  background: var(--white);
+  padding: 10px;
+  border-radius: 20px;
+  display: flex;
+  cursor: pointer;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+}
+.co-card-left {
+    background-color: #FFF;
+    border-radius: 20px;
+    width: 120px;
+    height: 130px;
+    padding-left: 8px;
+
+}
+.co-iconBx {
+    color: #90EE90;
+    padding-top: 25px;
+}
+.co-cardres{
+    border-radius: 25px;
+    width: 250px;
+    height: 120px;
+    background-color: #90EE90;
+}
+
+/* ================== p-card ============== */
+.p-card {
+    height: 140px;
+    width: 320px;
+}
+
+.p-card .p-cardName {
+  color: #FFF;
+  font-size: 1rem;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-weight: bold;
+  padding-top: 15px;
+}
+
+.p-card .p-card-numbers {
+  position: relative;
+  padding-right: 0px;
+  padding-left: 85px;
+  padding-top: 0px;
+  color: #FFF;
+  font-weight: 500;
+  font-size: 3rem;
+}
+.p-card {
+  position: relative;
+  background: var(--white);
+  padding: 10px;
+  border-radius: 20px;
+  display: flex;
+  cursor: pointer;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+}
+.p-card-left {
+    background-color: #FFF;
+    border-radius: 20px;
+    width: 120px;
+    height: 130px;
+    padding-left: 8px;
+
+}
+.p-iconBx {
+    color: red;
+    padding-top: 25px;
+}
+.p-cardres{
+    border-radius: 25px;
+    width: 250px;
+    height: 120px;
+    background-color: red;
+}
+/* ================== graph ============== */
+.chart-container {
+  position: relative;
+  left: 35px;
+  background-color: #FFF;
+  margin: 10px;
+  height: 310px;
+  width: 90%;
+}
+
+#income-chart {
+  padding: 30px;
+  width: 100%;
+  height: 100%;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a:active {
+  text-decoration: none;
+}
+.fas fa-warehouse {
+    font-size: 22px;
+}
+.bi-people-fill {
+    font-size: 30px;
+}
+.signup-button {
+	position: absolute;
+	top: 20px;
+	right: 10px;
+}
+
+.signup-button a {
+	background-color: #1E90FF;
+	color: #000;
+	padding: 10px 20px;
+	border-radius: 5px;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.signup-button a:hover {
+	background-color: #00529B;
+	color: #fff;
+}
+@media screen and (max-width: 900px){
+
+  .cardBox{
+    width:900px;
+    grid-template-columns: 100%;
+    grid-gap: 20px;
+  }
+
+}
+/* On smaller screens, decrease text size */
+@media screen and (max-width: 600px) {
+.navigation {
+  position: fixed;
+  width: 100%;
+  height: 850px;
+  background: #00529B;
+  border-left: 0px solid #FFF;
+  transition: 0.5s;
+  overflow: hidden;
+}
+.navigation.active {
+  width: 0px;
+}
+
+.navigation ul {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.navigation ul li {
+  position: relative;
+  width: 100%;
+  list-style: none;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+}
+
+.navigation ul li:hover,
+.navigation ul li.hovered {
+  background-color: #1E90FF;
+}
+
+.navigation ul li:nth-child(1) {
+  margin-bottom: 40px;
+  pointer-events: none;
+}
+
+.navigation ul li a {
+  position: relative;
+  display: block;
+  width: 100%;
+  display: flex;
+  text-decoration: none;
+  color: var(--white);
+}
+.navigation ul li:hover a,
+.navigation ul li.hovered a {
+  color: #FFF;
+}
+
+.navigation ul li a .icon {
+  position: relative;
+  display: block;
+  min-width: 35px;
+  height: 60px;
+  line-height: 75px;
+  text-align: center;
+}
+.navigation ul li a .icon ion-icon {
+  font-size: 1.75rem;
+}
+
+.navigation ul li a .title {
+  position: relative;
+  display: block;
+  padding: 0 10px;
+  height: 60px;
+  line-height: 60px;
+  text-align: start;
+  white-space: nowrap;
+}
+
+/* --------- curve outside ---------- */
+.navigation ul li:hover a::before,
+.navigation ul li.hovered a::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: -50px;
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  border-radius: 50%;
+  box-shadow: 35px -35px 0 10px var(--white);
+  pointer-events: none;
+}
+.navigation ul li:hover a::after,
+.navigation ul li.hovered a::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -50px;
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  border-radius: 50%;
+  box-shadow: 35px -35px 0 10px var(--white);
+  pointer-events: none;
+}
+.main {
+  position: fixed;
+  width: 150%;
+  left: 250px;
+  height: 100%;
+  background: #ffff;
+  transition: 0.5s;
+
+}
+.main.active {
+  width: calc(100% - 0px);
+  left: 0px;
+  background-color: #D3D3D3;
+}
+
+.topbar {
+  background-color: #00529B;
+  width: 100%;
+  height: 63px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+}
+.cardBox{
+  left: 10px;
+  width:100%;
+  display: grid;
+  grid-template-columns:100%;
+}
+
+.chart-container {
+display: none;
+}
+
+}
+
+
+    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+</head>
+
+<body>
+    <!-- =============== Navigation ================ -->
+    <div class="container">
+        <div class="navigation" id="navigation">
+            <ul>
+                <li>
+                    <a href="#">
+                        <span class="icon">
+                            <img style="height: 40px" src="https://blogger.googleusercontent.com/img/a/AVvXsEiT_IL-qdGCBBGS-E8D7twlbpXPoRj9vs4JsVK0ok-e6o_rHZjFAgWDD0B2EF5p-7gZIDO4ltLHIeOrOe_d23rmROLKkdBB3tGgKdbLvHgLlmzi3zeg8BFfftprQxOgbY2gCAJjVEk57Px0CmBhnHVreM7LGKd8TNnEfCpe_9c25Qd-7LikWKzbiiGP-A">
+                        </span>
+                        <span class="title">Active P & M</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/web/Dashboard/">
+                        <span class="icon">
+                            <ion-icon class="dashboard-icon" name="home-outline"></ion-icon>
+                        </span>
+                        <span class="title">Dashboard</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/web/CustomerDetails">
+                        <span class="icon">
+                            <i class="bi bi-people-fill"></i>
+                        </span>
+                        <span style="border-radius: 0px;" class="title">Customer Details</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/web/HouseShifting">
+                        <span class="icon">
+                            <i style="font-size:30px" class="material-icons">home</i>
+                        </span>
+                        <span class="title">House Shifting</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/web/VehicleShifting">
+                        <span class="icon">
+                            <i style="font-size:25px" class="fa fa-house">&#xf21c;</i>
+                        </span>
+                        <span class="title">Vehicle Shifting</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/web/WarehouseShifting">
+                        <span class="icon">
+                            <i class='fas fa-warehouse'></i>
+                        </span>
+                        <span class="title">Warehouse Shifting</span>
+                    </a>
+                </li>
+<!--                <li>-->
+<!--                    <a href="/web/Completed">-->
+<!--                        <span class="icon">-->
+<!--                            <i style="font-size: 22px;" class="fa">&#xf00c;</i>-->
+<!--                        </span>-->
+<!--                        <span class="title">Completed</span>-->
+<!--                    </a>-->
+<!--                </li>-->
+<!--                <li>-->
+<!--                    <a href="/web/Pending">-->
+<!--                        <span class="icon">-->
+<!--                            <i style="font-size: 24px;" class='fa fa-tasks'></i>-->
+<!--                        </span>-->
+<!--                        <span class="title">Pending</span>-->
+<!--                    </a>-->
+<!--                </li>-->
+                <li>
+                    <a href="#">
+                        <span class="icon">
+                            <ion-icon name="settings-outline"></ion-icon>
+                        </span>
+                        <span class="title">Settings</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/web/logout/">
+                        <span class="icon">
+                            <ion-icon name="log-out-outline"></ion-icon>
+                        </span>
+                        <span class="title">Back</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- ========================= Main ==================== -->
+        <div class="main" id="main">
+            <div class="topbar">
+                <div>
+                  <ion-icon name="menu-outline" style="color:white;font-size:35px;" id="toggle" onclick="toggles()"></ion-icon>
+                </div>
+                <div class="signup-button">
+                    <a href="/web/logout/">Sign out</a>
+                </div>
+
+            </div>
+
+            <!-- ======================= Cards ================== -->
+            <center><div class="cardBox">
+                <a href="/web/HouseShifting/">
+                <div class="h-card">
+                    <div class="h-card-left">
+                        <div class="h-iconBx">
+                            <i style="font-size:70px" class="fa">&#xf015;</i>
+                        </div>
+                    </div>
+
+                    <div class="h-cardres">
+                        <div class="h-card-numbers">
+                            20</div>
+                        <div class="h-cardName">HOUSE SHIFTING</div>
+                    </div>
+                </div>
+                </a>
+                <a href="/web/VehicleShifting/">
+                <div class="v-card" >
+                    <div class="v-card-left">
+                        <div class="v-iconBx">
+                            <i style="font-size:60px" class="fa">&#xf21c;</i>
+                        </div>
+                    </div>
+                    <div class="v-cardres" >
+                        <div class="v-card-numbers">
+                            28</div>
+                        <div class="v-cardName">VEHICLE SHIFTING</div>
+                    </div>
+                </div>
+                </a>
+                <a href="/web/WarehouseShifting/">
+                <div class="w-card">
+                    <div class="w-card-left">
+                        <div class="w-iconBx">
+                            <i style="font-size:60px" class='fas fa-warehouse'></i>
+                        </div>
+                    </div>
+
+                    <div class="w-cardres">
+                        <div class="w-card-numbers">
+                            23</div>
+                        <div class="w-cardName">WAREHOUSE SHIFTING</div>
+                    </div>
+                </div>
+                </a>
+            </div></center>
+
+            <center><div class="cardBox">
+                <a href="/web/CustomerDetails">
+                <div class="cu-card">
+                    <div class="cu-card-left">
+                        <div class="cu-iconBx">
+                            <i style="font-size:60px" class="bi bi-people-fill"></i>
+                        </div>
+                    </div>
+                    <div class="cu-cardres">
+                        <div class="cu-card-numbers">23</div>
+                        <div class="cu-cardName">CUSTOMERS</div>
+                    </div>
+                </div>
+                </a>
+                <a href="#">
+                <div class="co-card">
+                    <div class="co-card-left">
+                        <div class="co-iconBx">
+                            <i style="font-size:60px" class="fa">&#xf00c;</i>
+                        </div>
+                    </div>
+                    <div class="co-cardres">
+                        <div class="co-card-numbers">66</div>
+                        <div class="co-cardName">COMPLETED</div>
+                    </div>
+                </div>
+                </a>
+                <a href="#">
+                <div class="p-card">
+                    <div class="p-card-left">
+                        <div class="p-iconBx">
+                            <i style="font-size:60px" class='fa fa-tasks'></i>
+                        </div>
+                    </div>
+                    <div class="p-cardres">
+                        <div class="p-card-numbers">
+                            33</div>
+                        <div class="p-cardName">PENDING</div>
+                    </div>
+                </div>
+                </a>
+            </div></center>
+
+            <div class="chart-container">
+                <center><h2>Monthly Shifting Graph</h2></center>
+                <canvas id="income-chart"></canvas>
+            </div>
+
+    <!-- =========== Scripts =========  -->
+    <script src="assets/js/main.js"></script>
+
+    <!-- ====== ionicons ======= -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+<script>
+
+
+function toggles(e)
+{
+   var toggles = document.getElementById("navigation");
+   var main=document.getElementById("main");
+   toggles.classList.toggle("active");
+   main.classList.toggle("active");
+};
+
+
+
+  // Retrieve the monthly income data from your Django backend
+  const monthlyIncomeData = {{ dashboard_list|safe }};
+
+  // Get the canvas element
+  const canvas = document.getElementById('income-chart');
+
+  // Create the chart object
+  const chart = new Chart(canvas, {
+    type: 'line',
+    data: {
+      labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+      datasets: [{
+        label: 'Monthly Income',
+        data: monthlyIncomeData,
+        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+        borderColor: 'rgba(255, 99, 132, 1)',
+        borderWidth: 2
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+  });
+</script>
+</body>
+</html>

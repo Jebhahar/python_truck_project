@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Details</title>
+    <link rel="stylesheet" href="assets/css/cat.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+</head>
+<style>
+  /* =========== Google Fonts ============ */
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap");
+
+/* =============== Globals ============== */
+* {
+  font-family: "Ubuntu", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --yellow: #f7b006;
+  --white: #fff;
+  --gray: #f5f5f5;
+  --black1: #222;
+  --black2: #999;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+}
+.signup-button {
+	position: absolute;
+	top: 20px;
+	right: 10px;
+}
+
+.signup-button a {
+	background-color: #1E90FF;
+	color: #000;
+	padding: 10px 20px;
+	border-radius: 5px;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.signup-button a:hover {
+	background-color: #00529B;
+	color: #fff;
+}
+/* =============== Navigation ================ */
+.navigation {
+  position: fixed;
+  width: 240px;
+  height: 100%;
+  background: #00529B;
+  border-left: 0px solid #1E90FF;
+  transition: 0.5s;
+  overflow: hidden;
+}
+.navigation.active {
+  width: 70px;
+}
+
+.navigation ul {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.navigation ul li {
+  position: relative;
+  width: 100%;
+  list-style: none;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+}
+
+.navigation ul li:hover,
+.navigation ul li.hovered {
+  background-color: #ffff;
+}
+
+.navigation ul li:nth-child(1) {
+  margin-bottom: 40px;
+  pointer-events: none;
+}
+
+.navigation ul li a {
+  position: relative;
+  display: block;
+  width: 100%;
+  display: flex;
+  text-decoration: none;
+  color: var(--white);
+}
+.navigation ul li:hover a,
+.navigation ul li.hovered a {
+  color: var(--blue
+  );
+}
+
+.navigation ul li a .icon {
+  position: relative;
+  display: block;
+  min-width: 60px;
+  height: 60px;
+  line-height: 75px;
+  text-align: center;
+}
+.navigation ul li a .icon ion-icon {
+  font-size: 1.75rem;
+}
+
+.navigation ul li a .title {
+  position: relative;
+  display: block;
+  padding: 0 10px;
+  height: 60px;
+  line-height: 60px;
+  text-align: start;
+  white-space: nowrap;
+}
+
+/* --------- curve outside ---------- */
+.navigation ul li:hover a::before,
+.navigation ul li.hovered a::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: -50px;
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  border-radius: 50%;
+  box-shadow: 35px 35px 0 10px var(--white);
+  pointer-events: none;
+}
+.navigation ul li:hover a::after,
+.navigation ul li.hovered a::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -50px;
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  border-radius: 50%;
+  box-shadow: 35px -35px 0 10px var(--white);
+  pointer-events: none;
+}
+
+
+/* ===================== Main ===================== */
+.main {
+  position: absolute;
+  width: calc(100% - 240px);
+  left: 240px;
+  min-height: 100vh;
+  background: #FFF;
+  transition: 0.5s;
+  overflow-y: auto;
+}
+.main.active {
+  width: calc(100% - 70px);
+  left: 73px;
+}
+
+.topbar {
+  background-color: #00529B;
+  width: 100%;
+  height: 63px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+}
+
+.toggle {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5rem;
+  cursor: pointer;
+}
+
+.search {
+  position: relative;
+  width: 400px;
+  margin: 0 10px;
+}
+
+.search label {
+  position: relative;
+  width: 100%;
+}
+
+.search label input {
+  width: 100%;
+  height: 40px;
+  border-radius: 40px;
+  padding: 5px 20px;
+  padding-left: 35px;
+  font-size: 18px;
+  outline: none;
+  border: 1px solid var(--black2);
+}
+
+.search label ion-icon {
+  position: absolute;
+  top: 0;
+  left: 10px;
+  font-size: 1.2rem;
+}
+
+.user {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.user img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* popup form*/
+.openBtn {
+  display: flex;
+  justify-content: left;
+}
+.openButton {
+  border: none;
+  border-radius: 5px;
+  background-color: #1c87c9;
+  color: white;
+  padding: 14px 20px;
+  cursor: pointer;
+  position: fixed;
+}
+.loginPopup {
+  position: relative;
+  text-align: center;
+  width: 100%;
+
+}
+.formPopup {
+  display: none;
+  position: fixed;
+  left: 60%;
+  top: 5%;
+  transform: translate(-50%, 5%);
+  border: 3px solid #999999;
+  z-index: 9;
+  min-width: 800px;
+
+}
+.formContainer {
+  max-width: 800px;
+  padding: 20px;
+  background-color: #fff;
+  align-items: center;
+  box-shadow: 0 14px 28px rgba(0,0,0,.25),0 10px 10px rgba(0,0,0,.22)!important;
+  opacity: 3;
+}
+
+.formContainer input[type=text],
+.formContainer input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 20px 0;
+  border: none;
+  background: #eee;
+  border-radius: 7px;
+}
+.description
+{
+  width: 100%;
+  height: 50px !important;
+}
+.formContainer input[type=text]:focus,
+.formContainer input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+.formContainer .btn {
+  padding: 12px 20px;
+  border: none;
+  background-color: var(--yellow);
+  color: #fff;
+  cursor: pointer;
+  width: 90%;
+  margin-bottom: 15px;
+  opacity: 0.8;
+}
+.formContainer .cancel {
+  background-color: #cc0000;
+}
+.formContainer .btn:hover,
+.openButton:hover {
+  opacity: 1;
+}
+.category
+{
+  font-size: 16px;
+  border: 1px solid var(--black2);
+  border-radius: 7px;
+  margin-top: 18px;
+  padding: 9px;
+  width: 100%;
+
+}
+.cat1
+{
+  display:grid;
+  grid-template-columns:50% 50%;
+  grid-gap: 10px;
+  margin-top: 20px;
+}
+.filter
+{
+  margin-bottom: 14px;
+  display: none ;
+}
+.filter.active
+{
+  display:grid !important;
+  grid-template-columns:33% 33% 33%;
+  grid-gap: 10px;
+  margin-top: 20px;
+}
+.filter input[type=text]
+{
+    width: 100%;
+  padding: 15px;
+  margin: 5px 0 20px 0;
+  border: none;
+  background: #eee;
+  border-radius: 7px;
+}
+
+.txt-bx
+{
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 20px 0;
+    border: none;
+    background: #eee;
+    border-radius: 7px;
+}
+.container {
+    position: relative;
+    width: 100%;
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 40px;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+.cardBox{
+  position: relative;
+  left: 10px;
+  width:100%;
+  padding: 30px;
+}
+
+@media screen and (max-width: 600px) {
+
+.cardBox{
+  position: relative;
+  left: 10px;
+  width:100%;
+  padding: 30px;
+}
+
+.signup-button {
+	position: absolute;
+	top: 20px;
+	right: 5px;
+}
+
+.signup-button a {
+	background-color: #1E90FF;
+	color: #000;
+	padding: 10px 20px;
+	border-radius: 5px;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.signup-button a:hover {
+	background-color: #00529B;
+	color: #fff;
+}
+.navigation {
+  position: fixed;
+  width: 100%;
+  height: 850px;
+  background: #00529B;
+  border-left: 0px solid #FFF;
+  transition: 0.5s;
+  overflow: hidden;
+}
+.navigation.active {
+  width: 0px;
+}
+
+.navigation ul {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.navigation ul li {
+  position: relative;
+  width: 100%;
+  list-style: none;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+}
+
+.navigation ul li:hover,
+.navigation ul li.hovered {
+  background-color: #1E90FF;
+}
+
+.navigation ul li:nth-child(1) {
+  margin-bottom: 40px;
+  pointer-events: none;
+}
+
+.navigation ul li a {
+  position: relative;
+  display: block;
+  width: 100%;
+  display: flex;
+  text-decoration: none;
+  color: var(--white);
+}
+.navigation ul li:hover a,
+.navigation ul li.hovered a {
+  color: #FFF;
+}
+
+.navigation ul li a .icon {
+  position: relative;
+  display: block;
+  min-width: 35px;
+  height: 60px;
+  line-height: 75px;
+  text-align: center;
+}
+.navigation ul li a .icon ion-icon {
+  font-size: 1.75rem;
+}
+
+.navigation ul li a .title {
+  position: relative;
+  display: block;
+  padding: 0 10px;
+  height: 60px;
+  line-height: 60px;
+  text-align: start;
+  white-space: nowrap;
+}
+
+/* --------- curve outside ---------- */
+.navigation ul li:hover a::before,
+.navigation ul li.hovered a::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: -50px;
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  border-radius: 50%;
+  box-shadow: 35px -35px 0 10px var(--white);
+  pointer-events: none;
+}
+.navigation ul li:hover a::after,
+.navigation ul li.hovered a::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -50px;
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  border-radius: 50%;
+  box-shadow: 35px -35px 0 10px var(--white);
+  pointer-events: none;
+}
+.main {
+  position: fixed;
+  width: 150%;
+  left: 250px;
+  height: 100%;
+  background: #ffff;
+  transition: 0.5s;
+
+}
+.main.active {
+  width: calc(100% - 0px);
+  left: 0px;
+  background-color: #FFF;
+}
+
+.topbar {
+  background-color: #00529B;
+  width: 170%;
+  height: 63px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+}
+  table {
+    font-size: 0.8rem;
+  }
+
+  th, td {
+    padding: 0.3rem;
+  }
+
+h1{
+font-size: 25px;
+}
+}
+
+</style>
+<body>
+
+    <!-- =============== Navigation ================ -->
+    <div class="container">
+        <div class="navigation" id="navigation">
+            <ul>
+                <li>
+                    <a href="#">
+                        <span class="icon">
+                            <img style="height: 40px" src="https://blogger.googleusercontent.com/img/a/AVvXsEiT_IL-qdGCBBGS-E8D7twlbpXPoRj9vs4JsVK0ok-e6o_rHZjFAgWDD0B2EF5p-7gZIDO4ltLHIeOrOe_d23rmROLKkdBB3tGgKdbLvHgLlmzi3zeg8BFfftprQxOgbY2gCAJjVEk57Px0CmBhnHVreM7LGKd8TNnEfCpe_9c25Qd-7LikWKzbiiGP-A">
+                        </span>
+                        <span class="title">Active Packers & Movers</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/web/Dashboard/">
+                        <span class="icon">
+                            <ion-icon name="home-outline"></ion-icon>
+                        </span>
+                        <span class="title">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/web/CustomerDetails">
+                        <span class="icon">
+                            <i style="font-size:25px" class="bi bi-people-fill"></i>
+                        </span>
+                        <span style="border-radius: 0px;" class="title">Customer Details</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/web/HouseShifting">
+                        <span class="icon">
+                            <i style="font-size:25px" class="fa">&#xf015;</i>
+                        </span>
+                        <span class="title">House Shifting</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/web/VehicleShifting">
+                        <span class="icon">
+                            <i style="font-size:25px" class="fa">&#xf21c;</i>
+                        </span>
+                        <span class="title">Vehicle Shifting</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/web/WarehouseShifting">
+                        <span class="icon">
+                            <i style="font-size:22px" class='fas fa-warehouse'></i>
+                        </span>
+                        <span class="title">Warehouse Shifting</span>
+                    </a>
+                </li>
+<!--                <li>-->
+<!--                    <a href="/web/Completed">-->
+<!--                        <span class="icon">-->
+<!--                            <i style="font-size: 22px;" class="fa">&#xf00c;</i>-->
+<!--                        </span>-->
+<!--                        <span class="title">Completed</span>-->
+<!--                    </a>-->
+<!--                </li>-->
+<!--                <li>-->
+<!--                    <a href="/web/Pending">-->
+<!--                        <span class="icon">-->
+<!--                            <i style="font-size: 24px;" class='fa fa-tasks'></i>-->
+<!--                        </span>-->
+<!--                        <span class="title">Pending</span>-->
+<!--                    </a>-->
+<!--                </li>-->
+                <li>
+                    <a href="#">
+                        <span class="icon">
+                            <ion-icon name="settings-outline"></ion-icon>
+                        </span>
+                        <span class="title">Settings</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/web/Dashboard/">
+                        <span class="icon">
+                            <ion-icon name="log-out-outline"></ion-icon>
+                        </span>
+                        <span class="title">Back</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- ========================= Main ==================== -->
+        <div id="main" class="main">
+            <div class="topbar">
+                <div>
+                  <ion-icon name="menu-outline" style="color:white;font-size:35px;" id="toggle" onclick="toggles()"></ion-icon>
+                </div>
+                <div class="signup-button">
+                    <a href="/web/logout/">Sign out</a>
+                </div>
+            </div>
+
+            <!-- ======================= Cards ================== -->
+
+
+            <div class="cardBox">
+                <h1>Customer Details</h1>
+                    <table>
+                        <thead>
+                        <tr>____________________________________</tr>
+                            <tr>
+                                <td><h3>Customer ID</h3></td>
+                                <td><h3>User Name</h3></td>
+                                <td><h3>Phone Number</h3></td>
+                                <td><h3>Email</h3></td>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {% for item in data %}
+                                <tr>
+                                    <td>{{ item.id }}</td>
+                                    <td>{{ item.user_name }}</td>
+                                    <td>{{ item.user_phone_number }}</td>
+                                    <td>{{ item.user_email }}</td>
+
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <!-- =========== Scripts =========  -->
+    <script src="assets/js/main.js"></script>
+
+    <!-- ====== ionicons ======= -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script>
+    function toggles(e)
+        {
+           var toggles = document.getElementById("navigation");
+           var main=document.getElementById("main");
+           toggles.classList.toggle("active");
+           main.classList.toggle("active");
+        };
+    </script>
+</body>
+</html>
+

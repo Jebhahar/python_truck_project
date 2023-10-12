@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Shifting</title>
+    <link rel="stylesheet" href="assets/css/cat.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/smoothness/jquery-ui.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+</head>
+<style>
+  /* =========== Google Fonts ============ */
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap");
+
+/* =============== Globals ============== */
+* {
+  font-family: "Ubuntu", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+input[type="text"] {
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px #ccc;
+    width: 300px;
+    margin-right: 10px;
+}
+input[type="submit"] {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+input[type="submit"]:hover {
+    background-color: #0062cc;
+}
+:root {
+  --yellow: #f7b006;
+  --white: #fff;
+  --gray: #f5f5f5;
+  --black1: #222;
+  --black2: #999;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+}
+
+/* =============== Navigation ================ */
+.navigation {
+  position: fixed;
+  width: 500px;
+  height: 100%;
+  background: #00529B;
+  border-left: 0px solid #1E90FF;
+  transition: 0.5s;
+  overflow: hidden;
+}
+.navigation.active {
+  width: 80px;
+}
+
+.navigation ul {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.navigation ul li {
+  position: relative;
+  width: 100%;
+  list-style: none;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+}
+
+.navigation ul li:hover,
+.navigation ul li.hovered {
+  background-color: #1E90FF;
+}
+
+.navigation ul li:nth-child(1) {
+  margin-bottom: 40px;
+  pointer-events: none;
+}
+
+.navigation ul li a {
+  position: relative;
+  display: block;
+  width: 100%;
+  display: flex;
+  text-decoration: none;
+  color: var(--white);
+}
+.navigation ul li:hover a,
+.navigation ul li.hovered a {
+  color: #FFF;
+}
+
+.navigation ul li a .icon {
+  position: relative;
+  display: block;
+  min-width: 60px;
+  height: 60px;
+  line-height: 75px;
+  text-align: center;
+}
+.navigation ul li a .icon ion-icon {
+  font-size: 1.75rem;
+}
+
+.navigation ul li a .title {
+  position: relative;
+  display: block;
+  padding: 0 10px;
+  height: 60px;
+  line-height: 60px;
+  text-align: start;
+  white-space: nowrap;
+}
+
+/* --------- curve outside ---------- */
+.navigation ul li:hover a::before,
+.navigation ul li.hovered a::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: -50px;
+  width: 50px;
+  height: 50px;
+  background-color: #1E90FF;
+  border-radius: 50%;
+  box-shadow: 35px 35px 0 10px var(--white);
+  pointer-events: none;
+}
+.navigation ul li:hover a::after,
+.navigation ul li.hovered a::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -50px;
+  width: 50px;
+  height: 50px;
+  background-color: #1E90FF;
+  border-radius: 50%;
+  box-shadow: 35px -35px 0 10px var(--white);
+  pointer-events: none;
+}
+.navigation ul li :nth-child(3)
+{
+  display: grid;
+}
+.dropdown
+{
+  display: none;
+}
+
+.myDropdown
+{
+  display: none;
+}
+/*.showmenu
+{
+  display: block!important;
+}
+/
+
+
+/* ===================== Main ===================== */
+.main {
+  position: absolute;
+  width: calc(100% - 240px);
+  left: 240px;
+  min-height: 100vh;
+  background: #FFF;
+  transition: 0.5s;
+  overflow-y: auto;
+}
+.main.active {
+  width: calc(100% - 70px);
+  left: 73px;
+}
+
+.topbar {
+  background-color: #00529B;
+  width: 100%;
+  height: 63px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+}
+
+.toggle {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5rem;
+  cursor: pointer;
+}
+.status.inProgress {
+  padding: 2px 4px;
+  background: #1795ce;
+  color: var(--white);
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.search {
+  position: relative;
+  width: 400px;
+  margin: 0 10px;
+}
+
+.search label {
+  position: relative;
+  width: 100%;
+}
+
+.search label input {
+  width: 100%;
+  height: 40px;
+  border-radius: 40px;
+  padding: 5px 20px;
+  padding-left: 35px;
+  font-size: 18px;
+  outline: none;
+  border: 1px solid var(--black2);
+}
+
+.search label ion-icon {
+  position: absolute;
+  top: 0;
+  left: 10px;
+  font-size: 1.2rem;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+.cardBox{
+  position: relative;
+  left: 10px;
+  width:100%;
+  padding: 30px;
+}
+@media screen and (max-width: 600px) {
+.cardBox{
+  position: relative;
+  left: 10px;
+  width:100%;
+  padding: 30px;
+}
+.status.inProgress {
+  padding: 2px 4px;
+  background: #1795ce;
+  color: var(--white);
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+input[type="text"] {
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px #ccc;
+    width: 170px;
+    margin-right: 10px;
+}
+.signup-button {
+	position: absolute;
+	top: 20px;
+	right: 5px;
+}
+
+.signup-button a {
+	background-color: #1E90FF;
+	color: #000;
+	padding: 10px 20px;
+	border-radius: 5px;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.signup-button a:hover {
+	background-color: #00529B;
+	color: #fff;
+}
+.navigation {
+  position: fixed;
+  width: 100%;
+  height: 850px;
+  background: #00529B;
+  border-left: 0px solid #FFF;
+  transition: 0.5s;
+  overflow: hidden;
+}
+.navigation.active {
+  width: 0px;
+}
+
+.navigation ul {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.navigation ul li {
+  position: relative;
+  width: 100%;
+  list-style: none;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+}
+
+.navigation ul li:hover,
+.navigation ul li.hovered {
+  background-color: #1E90FF;
+}
+
+.navigation ul li:nth-child(1) {
+  margin-bottom: 40px;
+  pointer-events: none;
+}
+
+.navigation ul li a {
+  position: relative;
+  display: block;
+  width: 100%;
+  display: flex;
+  text-decoration: none;
+  color: var(--white);
+}
+.navigation ul li:hover a,
+.navigation ul li.hovered a {
+  color: #FFF;
+}
+
+.navigation ul li a .icon {
+  position: relative;
+  display: block;
+  min-width: 35px;
+  height: 60px;
+  line-height: 75px;
+  text-align: center;
+}
+.navigation ul li a .icon ion-icon {
+  font-size: 1.75rem;
+}
+
+.navigation ul li a .title {
+  position: relative;
+  display: block;
+  padding: 0 10px;
+  height: 60px;
+  line-height: 60px;
+  text-align: start;
+  white-space: nowrap;
+}
+
+/* --------- curve outside ---------- */
+.navigation ul li:hover a::before,
+.navigation ul li.hovered a::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: -50px;
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  border-radius: 50%;
+  box-shadow: 35px -35px 0 10px var(--white);
+  pointer-events: none;
+}
+.navigation ul li:hover a::after,
+.navigation ul li.hovered a::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -50px;
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  border-radius: 50%;
+  box-shadow: 35px -35px 0 10px var(--white);
+  pointer-events: none;
+}
+.main {
+  position: fixed;
+  width: 150%;
+  left: 250px;
+  height: 100%;
+  background: #ffff;
+  transition: 0.5s;
+  overflow: scroll;
+
+}
+.main.active {
+  width: calc(100% - 0px);
+  left: 0px;
+  background-color: #FFF;
+}
+
+.topbar {
+  background-color: #00529B;
+  width: 170%;
+  height: 63px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+}
+  table {
+    font-size: 0.8rem;
+  }
+
+  th, td {
+    padding: 0.3rem;
+  }
+
+h1{
+font-size: 20px;
+}
+}
+</style>
+<body>
+    <!-- =============== Navigation ================ -->
+    <div class="container">
+        <div id="navigation" class="navigation">
+            <ul>
+                <li>
+                    <a href="#">
+                        <span class="icon">
+                            <img style="height: 40px" src="https://blogger.googleusercontent.com/img/a/AVvXsEiT_IL-qdGCBBGS-E8D7twlbpXPoRj9vs4JsVK0ok-e6o_rHZjFAgWDD0B2EF5p-7gZIDO4ltLHIeOrOe_d23rmROLKkdBB3tGgKdbLvHgLlmzi3zeg8BFfftprQxOgbY2gCAJjVEk57Px0CmBhnHVreM7LGKd8TNnEfCpe_9c25Qd-7LikWKzbiiGP-A">
+                        </span>
+                        <span class="title">Active Packers & Movers</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/web/Dashboard/">
+                        <span class="icon">
+                            <ion-icon name="home-outline"></ion-icon>
+                        </span>
+                        <span class="title">Dashboard</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/web/CustomerDetails">
+                        <span class="icon">
+                            <i style="font-size:25px" class="bi bi-people-fill"></i>
+                        </span>
+                        <span style="border-radius: 0px;" class="title">Customer Details</span>
+
+                    </a>
+                </li>
+                <li>
+                    <a href="/web/HouseShifting">
+                        <span class="icon">
+                            <i style="font-size:25px" class="fa">&#xf015;</i>
+                        </span>
+                        <span class="title">House Shifting</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/web/VehicleShifting">
+                        <span class="icon">
+                            <i style="font-size:25px" class="fa">&#xf21c;</i>
+                        </span>
+                        <span class="title">Vehicle Shifting</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/web/WarehouseShifting">
+                        <span class="icon">
+                            <i style="font-size:22px" class='fas fa-warehouse'></i>
+                        </span>
+                        <span class="title">Warehouse Shifting</span>
+                    </a>
+                </li>
+<!--                <li>-->
+<!--                    <a href="/web/Completed">-->
+<!--                        <span class="icon">-->
+<!--                            <i style="font-size: 22px;" class="fa">&#xf00c;</i>-->
+<!--                        </span>-->
+<!--                        <span class="title">Completed</span>-->
+<!--                    </a>-->
+<!--                </li>-->
+<!--                <li>-->
+<!--                    <a href="/web/Pending">-->
+<!--                        <span class="icon">-->
+<!--                            <i style="font-size: 24px;" class='fa fa-tasks'></i>-->
+<!--                        </span>-->
+<!--                        <span class="title">Pending</span>-->
+<!--                    </a>-->
+<!--                </li>-->
+                <li>
+                    <a href="#">
+                        <span class="icon">
+                            <ion-icon name="settings-outline"></ion-icon>
+                        </span>
+                        <span class="title">Settings</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/web/Dashboard/">
+                        <span class="icon">
+                            <ion-icon name="log-out-outline"></ion-icon>
+                        </span>
+                        <span class="title">Back</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- ========================= Main ==================== -->
+        <div id="main" class="main">
+            <div class="topbar">
+                <div>
+                  <ion-icon name="menu-outline" style="color:white;font-size:35px;" id="toggle" onclick="toggles()"></ion-icon>
+                </div>
+<!--                <div class="signup-button">-->
+<!--                    <a href="/web/logout/">Sign out</a>-->
+<!--                </div>-->
+<!--                <form action="" method="get">-->
+<!--                  <div class="search-container">-->
+<!--                    <input type="text" placeholder="Search..." name="q" class="search-input">-->
+<!--                    <button type="submit" class="search-button"><i class="fa fa-search"></i></button>-->
+<!--                  </div>-->
+<!--                </form>-->
+            </div>
+
+            <!-- ======================= Cards ================== -->
+
+            <div style="margin-top: 0px;" class="cardBox">
+                <h1> House Shifting </h1>
+                ----------------------------------------------------
+                <form method="POST" action="/web/HouseShifting/">
+                      {% csrf_token %}
+                    <div>
+                      <select style="padding: 10px; background:#edf2ff; border:none;" name="status" autocomplete="off" onchange="this.form.submit()">
+                        <option value=" "><b>Status Filter</b></option>
+                        <option value="all" ><b>All</b></option>
+                        <option value="completed"><b>Completed</b></option>
+                        <option value="pending"><b>Pending</b></option>
+                      </select>
+
+                        <input placeholder="Search Booking ID" type="text" name="search" value="{{ search_query }}">
+                        <a href="#" onclick="this.closest('form').submit(); return false;"><i class="fas fa-search"></i></a>
+                    </div>
+                </form>
+                    <table style="margin-top: 22px;">
+                        <thead>
+                            <tr>
+                                <td><h3>H_ID</h3></td>
+                                <td><h3>Customer Id</h3></td>
+                                <td><h3>Booking_ID</h3></td>
+                                <td><h3>Pickup Location</h3></td>
+                                <td><h3>Dropoff Location</h3></td>
+                                <td><h3>Moving DateTime</h3></td>
+                                <td><h3>Order Placed Date</h3></td>
+                                <td><h3>Shifting Details</h3></td>
+                                <td><h3>C (or) P</h3></td>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {% for house_shifting_data in house_shifting %}
+                                <tr>
+                                    <td>{{ house_shifting_data.id }}</td>
+                                    <td>{{ house_shifting_data.user_id}}</td>
+                                    <td>{{ house_shifting_data.booking_id }}</td>
+                                    <td>{{ house_shifting_data.pickup_location }}</td>
+                                    <td>{{ house_shifting_data.drop_location }}</td>
+                                    <td>{{ house_shifting_data.moving_datetime }}</td>
+                                    <td>{{ house_shifting_data.order_placed_datetime }}</td>
+                                    <td>
+                                        <a href="{% url 'HouseShifting_Details' house_shifting_data.id %}" data-id = "{{ house_shifting_data.id }}" id = "{{ house_shifting_data.id }}">
+                                            <span class="status inProgress">Details</span>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        {% if house_shifting_data.completed == True %}
+                                        <i class="fa fa-check-circle" style="font-size:30px;color:green"></i>
+                                        {% elif house_shifting_data.completed == False %}
+                                        <i class="fa fa-close" style="font-size:30px;color:red"></i>
+                                        {% elif house_shifting_data.completed == None %}
+                                        <i class="fa fa-close" style="font-size:30px;color:red"></i>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- =========== Scripts =========  -->
+    <script src="assets/js/main.js"></script>
+
+    <!-- ====== ionicons ======= -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script>
+    function toggles(e)
+        {
+           var toggles = document.getElementById("navigation");
+           var main=document.getElementById("main");
+           toggles.classList.toggle("active");
+           main.classList.toggle("active");
+        };
+    </script>
+
+
+</body>
+</html>
+

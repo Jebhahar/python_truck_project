@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>House Shifting Details</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <style>
+.top-bar {
+  background-color: #00529B; /* blue color */
+  color: #FFFFFF; /* white color for text */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.top-bar__heading {
+  margin: 0;
+}
+
+.top-bar__back-btn {
+  background-color: transparent;
+  border: 2px solid #FFFFFF; /* white color for border */
+  color: #FFFFFF;
+  padding: 6px 10px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.content {
+  /* Add your styles for the content section */
+}
+.wrapper {
+  display: flex;
+}
+}
+.float-container {
+    border: 3px solid #fff;
+    padding: 20px;
+}
+
+
+.left-box {
+  background-color: #E7E7E7;
+  padding: 20px;
+  height: 650px;
+  width: 500px;
+  border-radius: 20px;
+}
+
+.right-box {
+  flex: 1;
+  background-color: #FBFBFB;
+  padding: 20px;
+  height: 650px;
+}
+.box-box-1 {
+  flex: 1;
+  background-color: #FFF;
+  padding: 20px;
+  height: 300px;
+  border-radius: 20px;
+}
+
+.box-box-2 {
+  flex: 1;
+  background-color: #FFF;
+  padding: 20px;
+  height: 200px;
+  margin-top: 10px;
+  border-radius: 20px;
+}
+.right-box-1{
+  flex: 1;
+  background-color: #E7E7E7;
+  padding: 20px;
+  height: 250px;
+  border-radius: 20px;
+}
+.right-box-2{
+  margin-top: 30px;
+  flex: 1;
+  background-color: #E7E7E7;
+  padding: 20px;
+  height: 250px;
+}
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a:active {
+  text-decoration: none;
+}
+.container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.right-box-1-left-box {
+  width: 50%;
+  height: 200px;
+  background-color: #FFF;
+  border-radius: 20px;
+}
+
+.right-box-1-right-box {
+  width: 50%;
+  height: 200px;
+  background-color: #FFF;
+  border-radius: 20px;
+}
+.right-box-2-box {
+  width: 100%;
+  height: 200px;
+  background-color: #FFF;
+  border-radius: 20px;
+}
+.box-box-1-inner {
+  width: 100%;
+  height: 200px;
+  background-color: #FFF;
+}
+#datepicker {
+  border: 1px solid #ccc;
+  padding: 5px;
+  font-size: 14px;
+  width: 200px;
+  box-sizing: border-box;
+}
+.box-box-1-details p {
+    font-size: 17px;
+}
+.box-box-1-h2 {
+    color: #FFF;
+    margin: 0px;
+    background-color: #1E90FF;
+    border-radius: 5px;
+    padding: 10px;
+    display: inline-block;
+    font-size: 19px;
+}
+.icon i {
+    color: black;
+    font-size: 40px;
+}
+.title {
+color: red;
+font-size: 40px;
+}
+.box-box-2-h2 {
+    color: #FFF;
+    margin: 3px;
+    background-color: #1E90FF;
+    display: inline-block;
+    padding: 8px;
+    border-radius: 5px;
+}
+.box-box-2-details p {
+    font-size: 17px;
+}
+.right-box-1-h2 {
+    color: #FFF;
+    margin: 3px;
+    background-color: #1E90FF;
+    display: inline-block;
+    padding: 8px;
+    border-radius: 5px;
+}
+.right-box-1-left-box-h3 {
+
+}
+.right-box-1-left-box img {
+    width: 40%;
+}
+
+.right-box-1-right-box-h3 {
+
+}
+.right-box-1-right-box-details {
+    padding-left: 80px;
+}
+.right-box-1-right-box-details p {
+    font-size: 20px;
+
+}
+.right-box-2-h2 {
+    width: 100%;
+    color: #FFF;
+    margin: 3px;
+    background-color: #1E90FF;
+    display: inline-block;
+    padding: 8px;
+    border-radius: 5px;
+}
+.right-box-2-box-details {
+    padding-right: 400px;
+    padding-top: 10px;
+}
+.right-box-2-box-details-total {
+    padding-left: 500px;
+
+}
+.right-box-2-box-details-total-h2 {
+    color: #FFF;
+    margin: 2px;
+    background-color: black;
+    display: inline-block;
+    padding: 3px;
+    border-radius: 5px;
+
+}
+
+@media screen and (max-width: 600px) {
+
+.top-bar {
+  background-color: #00529B; /* blue color */
+  color: #FFFFFF; /* white color for text */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  width: 615px;
+  height: 30px;
+}
+.top-bar__heading {
+  margin: 0;
+  font-size: 20px;
+}
+.icon i {
+    color: black;
+    font-size: 20px;
+}
+#datepicker {
+  border: 1px solid #ccc;
+  padding: 5px;
+  font-size: 10px;
+  width: 150px;
+  box-sizing: border-box;
+}
+.title {
+color: red;
+font-size: 20px;
+}
+
+.left-box {
+  background-color: #E7E7E7;
+  padding: 20px;
+  height: 650px;
+  width: 500px;
+  border-radius: 20px;
+}
+
+.box-box-1 {
+  flex: 1;
+  background-color: #FFF;
+  padding: 5px;
+  height: 265px;
+  width: 250px;
+  margin-top: 13px;
+  border-radius: 20px;
+}
+.box-box-1-details {
+
+}
+.box-box-1-h2 {
+    color: #FFF;
+    margin: -2px;
+    background-color: #1E90FF;
+    border-radius: 5px;
+    padding: 4px;
+    display: inline-block;
+    font-size: 18px;
+}
+.box-box-1-details p {
+    font-size: 12px;
+    padding-left: 15px;
+}
+.box-box-2 {
+  flex: 1;
+  background-color: #FFF;
+  padding: 5px;
+  height: 170px;
+  width: 250px;
+  margin-top: 20px;
+  border-radius: 20px;
+}
+.box-box-2-h2 {
+    color: #FFF;
+    margin: -2px;
+    background-color: #1E90FF;
+    display: inline-block;
+    padding: 4px;
+    border-radius: 5px;
+    font-size: 18px;
+}
+
+.box-box-2-details p {
+    font-size: 12px;
+    padding-left: 15px;
+}
+
+.right-box {
+  flex: 1;
+  background-color: #FBFBFB;
+  padding: 20px;
+  height: 650px;
+  width: 315px;
+}
+.right-box-1{
+  flex: 1;
+  background-color: #E7E7E7;
+  padding: 10px;
+  height: 250px;
+  border-radius: 20px;
+}
+.right-box-1-h2 {
+    color: #FFF;
+    margin: -2px;
+    background-color: #1E90FF;
+    display: inline-block;
+    padding: 4px;
+    border-radius: 5px;
+    font-size: 18px;
+}
+.container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding-top: 16px;
+}
+.right-box-1-left-box {
+  width: 50%;
+  height: 170px;
+  background-color: #FFF;
+  border-radius: 20px
+}
+
+.right-box-1-left-box-h3 {
+    font-size: 15px;
+}
+
+.right-box-1-left-box img {
+    width: 80%;
+}
+
+
+.right-box-1-right-box {
+  width: 50%;
+  height: 170px;
+  background-color: #FFF;
+  border-radius: 20px;
+}
+.right-box-1-right-box-h3 {
+    font-size: 15px;
+}
+.right-box-1-right-box-details {
+    padding-left: 5px;
+}
+.right-box-1-right-box-details p {
+    font-size: 12px;
+}
+.right-box-2{
+  margin-top: 20px;
+  flex: 1;
+  background-color: #E7E7E7;
+  padding: 10px;
+  height: 280px;
+}
+
+.right-box-2-h2 {
+    color: #FFF;
+    margin: -2px;
+    background-color: #1E90FF;
+    display: inline-block;
+    padding: 4px;
+    border-radius: 5px;
+    font-size: 18px;
+}
+
+.right-box-2-box {
+  width: 98%;
+  height: 210px;
+  background-color: #FFF;
+  border-radius: 20px;
+}
+.right-box-2-box-details {
+    padding-right: 60px;
+    padding-top: 4px;
+}
+.right-box-2-box-details-total {
+    padding-left: 65px;
+    width: 230px;
+}
+
+right-box-2-box-details-total-h2 {
+    color: #FFF;
+    margin: 2px;
+    background-color: black;
+    display: inline-block;
+    padding: 3px;
+    border-radius: 5px;
+    font-size: 18px;
+    width: 200px;
+
+}
+
+}
+
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+<body>
+<header class="top-bar">
+  <h1 class="top-bar__heading">WareHouse Storing Details</h1>
+  <a class="top-bar__back-btn" href="/web/WarehouseShifting/">Back</a>
+</header>
+
+<div class="wrapper">
+  <div class="left-box">
+      <div>
+        <a href="#">
+            <span class="icon">
+                <i class="bi bi-people-fill"></i>
+            </span>
+            <span class="title"> {{ user_profile.user_name }}</span>
+        </a>
+          <form method="POST" action="{% url 'WarehouseShifting_Details' warehouse_shifting_detail.id %}">
+            {% csrf_token %}
+              <div>
+                  <label for="datepicker"><b>Select a date:</b></label>
+                  <input type="datetime-local" id="datepicker" name="completed_date" value="{{ completed_date }}">
+                  <button type="submit" value="Submit" >Submit</button>
+              </div>
+          </form>
+      </div>
+
+      <div class="box-box-1">
+        <center><h2 class="box-box-1-h2">Pick-Up Details</h2></center>
+          <div class="box-box-1-details">
+            <p><b>Customer Id :</b> {{ user_profile.id }}</p>
+            <p><b>W_Id :</b> {{ user_profile.id }}</p>
+            <p><b>Email Id :</b> {{ user_profile.user_email }}</p>
+            <p><b>Storing Days :</b> {{ warehouse_shifting_detail.storing_days }}</p>
+            <p><b>phone Number :</b> {{ user_profile.user_phone_number }}</p>
+            <p><b>Pickup Location :</b> {{ warehouse_shifting_detail.pickup_location }}</p>
+            <p><b>Pickup Address :</b> {{ warehouse_shifting_detail.pickup_address }}</p>
+            <p><b>Pickup floor :</b> {{ warehouse_shifting_detail.pickup_floor }}</p>
+          </div>
+      </div>
+
+      <div class="box-box-2">
+        <center><h2 class="box-box-2-h2">Drop-Off Details</h2></center>
+          <center><h2>Warehouse Storage</h2></center>
+      </div>
+  </div>
+
+  <div class="right-box">
+
+    <div class="right-box-1">
+      <center><h2 class="right-box-1-h2">Item Details</h2></center>
+
+        <div class="container">
+            <div class="right-box-1-left-box">
+                <center><h3 class="right-box-1-left-box-h3"><u>Vehicle Image</u></h3></center>
+                <center><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgPpiVAbcdKSMPzw7U83mhydTiDULSodiM-R3p-gbe63NY-EvghFeeOsoOsKLtih-9-7dKf4qUm7gNTcE0RqeBJkM4j_Z9y49pAhP9M0GsByBNNEYU71b9hRAJgF4f1nr5uuOG074krA4Ddjt_XBfnbifumE2oHubuGhDXLrc0paMz3M_fmXJaMSgLy0g/s1080/WhatsApp%20Image%202023-05-01%20at%208.10.13%20PM.jpeg" alt=""></center>
+            </div>
+            <div class="right-box-1-right-box">
+                <center><h3 class="right-box-1-right-box-h3"><u>Selected Items</u></h3></center>
+                <div class="right-box-1-right-box-details">
+                    <p><b>* </b><b>Furniture </b></p>
+                    <p><b>* </b><b>Appliance </b></p>
+                    <p><b>* </b><b>Cartons </b></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="right-box-2">
+      <center><h2 class="right-box-2-h2">Total Bill</h2></center>
+        <div class="container">
+            <div class="right-box-2-box">
+                <center><div class="right-box-2-box-details">
+                    <p><b>Items Charge :</b> Rs: 500</p>
+                    <p><b>KM Charge :</b> Rs: 500 </p>
+                    <p><b>Vehicle Charge :</b> Rs: 500 </p>
+                </div></center>
+                <div class="right-box-2-box-details-total">
+                    <h2 class="right-box-2-box-details-total-h2">Total Amount <b>:</b>1500</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  </div>
+</div>
+  </body>
+<script>
+  $(function() {
+    $('.datepicker').datepicker({
+      dateFormat: 'yy-mm-dd',
+      timeFormat: 'HH:mm:ss'
+    });
+  });
+</script>
+</html>
